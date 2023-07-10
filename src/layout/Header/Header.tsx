@@ -1,8 +1,19 @@
 import { Link } from "react-router-dom";
 import { CONSTANTS } from "../../constants/constant";
 import "./Header.scss";
+import DarkMode from "../../components/DarkMode";
+import { useAppDispatch, useAppSelector } from "../../store/hook";
+import { changeDayNight } from "../../store/modeSlice";
 
 const Header = () => {
+  const daynight = useAppSelector((state) => state.mode);
+  const dispatch = useAppDispatch();
+  const { mode } = daynight;
+
+  const daynightHandler = () => {
+    dispatch(changeDayNight(mode));
+  };
+
   return (
     <nav className="wrap">
       <Link to="/">
@@ -13,7 +24,9 @@ const Header = () => {
           <i className="fab fa-github"></i>
           <span>GitHub</span>
         </a>
-        <div>toggle</div>
+        <div onClick={daynightHandler}>
+          <DarkMode theme={mode} />
+        </div>
         <button className="fullscreen-btn">
           <i className="fas fa-expand fa-lg"></i>
         </button>
