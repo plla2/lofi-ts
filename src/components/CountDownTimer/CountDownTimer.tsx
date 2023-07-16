@@ -63,7 +63,9 @@ const CountDownTimer = ({
               className="number-input"
               type="number"
               value={minute}
-              onChange={(e) => setMinute(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setMinute(e.target.value)
+              }
               max={60}
               min={0}
             />
