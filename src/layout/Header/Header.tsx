@@ -19,6 +19,7 @@ const Header = () => {
       <Link to="/">
         <img src="/assets/icons/lofi-logo.gif" alt="로고 이미지" />
       </Link>
+      <div className="nav-menu"></div>
       <div className="nav-menu">
         <a href={CONSTANTS.Author_GITHUB} rel="noreferrer" target="_blank">
           <i className="fab fa-github"></i>
