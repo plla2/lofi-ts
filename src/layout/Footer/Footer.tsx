@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { chill, jazzy, sleep } from "../../data/songData";
 import { useAppSelector } from "../../store/hook";
-import Player from "../../components/Player/Player";
 import { CONSTANTS } from "../../constants/constant";
 
 const Footer = () => {
@@ -17,27 +16,6 @@ const Footer = () => {
           <span>Song name : {jazzy[currentSongIndex].name}</span>
         ) : (
           <span>Song name : {sleep[currentSongIndex].name}</span>
-        )}
-      </div>
-      <div className="controller">
-        {moodMode === "chill" ? (
-          <Player
-            currentSongIndex={currentSongIndex}
-            setCurrentSongIndex={setCurrentSongIndex}
-            songs={chill}
-          />
-        ) : moodMode === "jazzy" ? (
-          <Player
-            currentSongIndex={currentSongIndex}
-            setCurrentSongIndex={setCurrentSongIndex}
-            songs={jazzy}
-          />
-        ) : (
-          <Player
-            currentSongIndex={currentSongIndex}
-            setCurrentSongIndex={setCurrentSongIndex}
-            songs={sleep}
-          />
         )}
       </div>
       <div className="author">
