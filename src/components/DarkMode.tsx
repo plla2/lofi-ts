@@ -14,11 +14,10 @@ const DarkMode = ({ theme }: Prop) => {
 };
 
 const MaterialUISwitch = styled(Switch)(({ theme }: string) => ({
-  width: 65,
+  width: 60,
   height: 34,
   padding: 7,
   "& .MuiSwitch-switchBase": {
-    margin: 4,
     padding: 0,
     transform: "translateX(6px)",
     "&.Mui-checked": {
