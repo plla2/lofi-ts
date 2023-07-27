@@ -2,6 +2,8 @@ import { useState } from "react";
 import { chill, jazzy, sleep } from "../../data/songData";
 import { useAppSelector } from "../../store/hook";
 import { CONSTANTS } from "../../constants/constant";
+import Player from "../../components/Player/Player";
+import "./Footer.scss";
 
 const Footer = () => {
   const data = useAppSelector((state) => state.mood);
@@ -17,6 +19,9 @@ const Footer = () => {
         ) : (
           <span>Song name : {sleep[currentSongIndex].name}</span>
         )}
+      </div>
+      <div className="controller">
+        <Player />
       </div>
       <div className="author">
         Made by:

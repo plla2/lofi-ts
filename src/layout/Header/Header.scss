@@ -48,7 +48,6 @@
         padding: 0 8px;
 
         &:after {
-          //make the hover effect on the navbar menu
           content: "";
           height: 2px;
           background: white;
@@ -63,7 +62,6 @@
         }
       }
       &:hover {
-        //make the hover effect on the navbar menu
         span:after {
           transform: scaleX(1);
           opacity: 1;
