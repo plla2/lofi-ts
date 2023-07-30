@@ -2,9 +2,17 @@ import prevBtn from "../../../public/assets/icons/prev.svg";
 import playBtn from "../../../public/assets/icons/play.svg";
 import pauseBtn from "../../../public/assets/icons/pause.svg";
 import nextBtn from "../../../public/assets/icons/next.svg";
+import { useEffect, useRef, useState } from "react";
+import { useAppSelector } from "../../store/hook";
 
-const Player = () => {
-  const data = useSelector((state) => state.volume);
+interface Props {
+  currentSongIndex: number;
+  setCurrentSongIndex: React.Dispatch<React.SetStateAction<number>>;
+  songs: { id: number; name: string; mood: string; src: string }[];
+}
+
+const Player = ({ currentSongIndex, setCurrentSongIndex, songs }: Props) => {
+  const data = useAppSelector((state) => state.volume);
 
   const { volumeValue } = data;
 
@@ -47,15 +55,19 @@ const Player = () => {
   };
   return (
     <div className="music-player">
-      <audio loop></audio>
+      <audio loop src={songs[currentSongIndex].src} ref={audioElement}></audio>
       <div className="music-player--controls">
-        <button>
+        <button className="skip-btn" onClick={() => SkipSong(false)}>
           <img src={prevBtn} alt="이전 버튼" />
         </button>
-        <button>
-          <img src={playBtn} alt="시작 버튼" />
+        <button className="play-btn" onClick={() => setIsPlaying(!isPlaying)}>
+          {isPlaying ? (
+            <img src={pauseBtn} alt="중지 버튼" />
+          ) : (
+            <img src={playBtn} alt="시작 버튼" />
+          )}
         </button>
-        <button>
+        <button className="skip-btn" onClick={() => SkipSong()}>
           <img src={nextBtn} alt="" />
         </button>
       </div>
