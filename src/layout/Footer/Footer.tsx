@@ -21,7 +21,25 @@ const Footer = () => {
         )}
       </div>
       <div className="controller">
-        <Player />
+        {moodMode === "chill" ? (
+          <Player
+            currentSongIndex={currentSongIndex}
+            setCurrentSongIndex={setCurrentSongIndex}
+            songs={chill}
+          />
+        ) : moodMode === "jazzy" ? (
+          <Player
+            currentSongIndex={currentSongIndex}
+            setCurrentSongIndex={setCurrentSongIndex}
+            songs={jazzy}
+          />
+        ) : (
+          <Player
+            currentSongIndex={currentSongIndex}
+            setCurrentSongIndex={setCurrentSongIndex}
+            songs={sleep}
+          />
+        )}
       </div>
       <div className="author">
         Made by:
