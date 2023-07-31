@@ -2,7 +2,7 @@ import prevBtn from "../../../public/assets/icons/prev.svg";
 import playBtn from "../../../public/assets/icons/play.svg";
 import pauseBtn from "../../../public/assets/icons/pause.svg";
 import nextBtn from "../../../public/assets/icons/next.svg";
-import { useEffect, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { useAppSelector } from "../../store/hook";
 
 interface Props {
@@ -12,11 +12,12 @@ interface Props {
 }
 
 const Player = ({ currentSongIndex, setCurrentSongIndex, songs }: Props) => {
-  const data = useAppSelector((state) => state.volume);
+  const data = useAppSelector((state: any) => state.volume);
 
-  const { volumeValue } = data;
+  const { volumeValue } = data as { volumeValue: number };
 
-  const audioElement = useRef();
+  const audioElement: MutableRefObject<HTMLAudioElement | null | undefined> =
+    useRef();
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
