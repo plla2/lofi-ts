@@ -1,9 +1,10 @@
-import prevBtn from "../../../public/assets/icons/prev.svg";
-import playBtn from "../../../public/assets/icons/play.svg";
-import pauseBtn from "../../../public/assets/icons/pause.svg";
-import nextBtn from "../../../public/assets/icons/next.svg";
-import { MutableRefObject, useEffect, useRef, useState } from "react";
+import prevBtn from "../../assets/icons/prev.svg";
+import playBtn from "../../assets/icons/play.svg";
+import pauseBtn from "../../assets/icons/next.svg";
+import nextBtn from "../../assets/icons/pause.svg";
+import { useEffect, useRef, useState } from "react";
 import { useAppSelector } from "../../store/hook";
+import { RootState } from "../../store/store";
 
 interface Props {
   currentSongIndex: number;
@@ -12,22 +13,23 @@ interface Props {
 }
 
 const Player = ({ currentSongIndex, setCurrentSongIndex, songs }: Props) => {
-  const data = useAppSelector((state: any) => state.volume);
+  const data = useAppSelector((state: RootState) => state.volume);
 
   const { volumeValue } = data as { volumeValue: number };
 
-  const audioElement: MutableRefObject<HTMLAudioElement | null | undefined> =
-    useRef();
+  const audioElement = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
+    if (!audioElement.current) return;
+
     if (isPlaying) {
-      audioElement.current.play();
+      void audioElement.current.play();
     } else {
       audioElement.current.pause();
     }
     audioElement.current.volume = volumeValue / 100;
-  });
+  }, [isPlaying, volumeValue, audioElement]);
 
   const SkipSong = (forwards = true) => {
     if (forwards) {
