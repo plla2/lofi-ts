@@ -5,6 +5,7 @@ import nextBtn from "../../assets/icons/pause.svg";
 import { useEffect, useRef, useState } from "react";
 import { useAppSelector } from "../../store/hook";
 import { RootState } from "../../store/store";
+import "./styles.scss";
 
 interface Props {
   currentSongIndex: number;
