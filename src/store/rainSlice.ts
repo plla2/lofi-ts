@@ -5,11 +5,6 @@ interface RainPayload {
   rainValue: number;
 }
 
-const initialState: { rainMode: string; rainValue: number } = {
-  rainMode: "clear",
-  rainValue: 0,
-};
-
 const rainSlice = createSlice({
   name: "rain",
   initialState: {
@@ -32,7 +27,6 @@ const rainSlice = createSlice({
       } else if (currentStatus === "clear") {
         state.rainMode = "rain";
       }
-
       state.rainValue = value;
     },
   },
