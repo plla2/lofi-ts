@@ -4,6 +4,7 @@ import "./Header.scss";
 import DarkMode from "../../components/DarkMode";
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { changeDayNight } from "../../store/modeSlice";
+import logo from "../../assets/icons/lofi-logo.gif";
 
 const Header = () => {
   const daynight = useAppSelector((state) => state.mode);
@@ -17,7 +18,7 @@ const Header = () => {
   return (
     <nav className="wrap">
       <Link to="/">
-        <img src="/assets/icons/lofi-logo.gif" alt="로고 이미지" />
+        <img src={logo} alt="로고 이미지" />
       </Link>
       <div className="nav-menu"></div>
       <div className="nav-menu">
