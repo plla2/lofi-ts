@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles.scss";
-// import TimerStyled from '../TimerStyled';
+import TimerStyled from "../TimerStyled";
 
 const CountDownTimer = ({
   seconds,
@@ -17,17 +17,17 @@ const CountDownTimer = ({
   const [minute, setMinute] = useState(0);
   const [second, setSecond] = useState(0);
 
-  // const setTimerBtnHandler = () => {
-  //   setTimerHandler(hour, minute, second);
-  //   setTimerStart(true);
-  // };
+  const setTimerBtnHandler = () => {
+    setTimerHandler(hour, minute, second);
+    setTimerStart(true);
+  };
 
   return (
     <div className="countdown">
       {timerStart ? (
         <div className="countdownRunning">
           <div className="displayTime">
-            {/* <TimerStyled seconds={seconds} minutes={minutes} hours={hours} /> */}
+            <TimerStyled seconds={seconds} minutes={minutes} hours={hours} />
           </div>
           <div className="controller">
             <button
