@@ -1,5 +1,7 @@
 .play-btn,
 .skip-btn {
-  // background: transparent;
+  background: transparent;
+  z-index: 2;
+  position: relative;
   border: none;
 }
