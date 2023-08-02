@@ -75,16 +75,16 @@ const Board = () => {
               <h4>Mood</h4>
               <div className="options">
                 <div id="chill" onClick={moodChangeHandler}>
-                  <i className="fas fa-coffee fa-2x"></i>
-                  <span>Chill</span>
+                  <i id="chill" className="fas fa-coffee fa-2x"></i>
+                  <span id="chill">Chill</span>
                 </div>
                 <div id="jazzy" onClick={moodChangeHandler}>
-                  <i className="fas fa-guitar fa-2x"></i>
-                  <span>Jazzy</span>
+                  <i id="jazzy" className="fas fa-guitar fa-2x"></i>
+                  <span id="jazzy">Jazzy</span>
                 </div>
                 <div id="sleep" onClick={moodChangeHandler}>
-                  <i className="fas fa-moon fa-2x"></i>
-                  <span>Sleep</span>
+                  <i id="sleep" className="fas fa-moon fa-2x"></i>
+                  <span id="sleep">Sleep</span>
                 </div>
               </div>
             </div>
