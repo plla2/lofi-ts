@@ -1,8 +1,19 @@
 import { useAppSelector } from "../../store/hook";
 import RainToggleBtn from "../RainToggleBtn/RainToggleBtn";
 import "../../pages/Home/Home.scss";
+import { useState } from "react";
+import { useTimer } from "react-timer-hook";
+import Board from "../Board/Board";
+
+interface timeType {
+  hour: number;
+  minute: number;
+  second: number;
+}
 
 const Home = () => {
+  const [timerStart, setTimerStart] = useState(false);
+
   const daynight = useAppSelector((state) => state.mode);
   const rain = useAppSelector((state) => state.rain);
 
@@ -10,7 +21,22 @@ const Home = () => {
   const { rainMode } = rain;
 
   const combineMode = `${mode}-${rainMode}`;
-  console.log(combineMode);
+
+  const expiryTimestamp = new Date();
+  expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + 0);
+
+  const { seconds, minutes, hours, isRunning, pause, restart, resume } =
+    useTimer({
+      expiryTimestamp,
+      onExpire: () => setTimerStart(false),
+    });
+
+  const setTimeHandler = ({ hour, minute, second }: timeType) => {
+    const time = new Date();
+    const setupTime =
+      Number(hour) * 3600 + Number(minute) * 60 + Number(second);
+    time.setSeconds(time.getSeconds() + setupTime);
+  };
   return (
     <>
       <div>
@@ -48,6 +74,18 @@ const Home = () => {
         </video>
       </div>
       <RainToggleBtn />
+      <Board
+        seconds={seconds}
+        minutes={minutes}
+        hours={hours}
+        isRunning={isRunning}
+        pause={pause}
+        restart={restart}
+        resume={resume}
+        timerStart={timerStart}
+        setTimerStart={setTimerStart}
+        setTimeHandler={setTimeHandler}
+      />
     </>
   );
 };
