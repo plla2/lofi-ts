@@ -1,5 +1,5 @@
 import ReactAudioPlayer from "react-audio-player";
-import rainCity from "../../assets/musics/rain_city.mp3";
+import rainCity from "/assets/musics/rain_city.mp3";
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { useState } from "react";
 import { changeRainStatus } from "../../store/rainSlice";
