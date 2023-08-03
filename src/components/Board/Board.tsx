@@ -4,7 +4,7 @@ import ReactAudioPlayer from "react-audio-player";
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { changeMoodStatus } from "../../store/moodSlice";
 import Stack from "@mui/material/Stack";
-import { Slider } from "@mui/material";
+import Slider from "@mui/material/Slider";
 import { changeVolume } from "../../store/changeVolumeSlice";
 
 const Board = () => {
@@ -18,8 +18,9 @@ const Board = () => {
   const { rainValue } = rainData;
   const { moodMode } = moodData;
   const { volumeValue } = volumeData;
-  console.log(volumeValue);
-  const [cityTraffic, setCityTraffic] = useState(0);
+  console.log("volumeValue", volumeValue);
+  const [cityTraffic, setCityTraffic] = useState<number | undefined>(0);
+  console.log("cityTraffic", cityTraffic);
   const [cityRain, setCityRain] = useState(rainValue);
   const [fireplace, setFireplace] = useState(0);
   const [snow, setSnow] = useState(0);
@@ -46,12 +47,16 @@ const Board = () => {
     const clickedElementId = (e.target as HTMLDivElement).id;
     dispatch(changeMoodStatus(clickedElementId));
   };
-  // const volumeChangeHandler = (e: { target: { value: number; }; }) => {
-  //   dispatch(changeVolume(e.target.value));
-  // };
+
   const volumeChangeHandler = (_e: Event, value: number | number[]) => {
     dispatch(changeVolume(value as number));
   };
+  const volumeHandler = (_e: Event, value: number | number[]): void => {
+    console.log(_e);
+    const vol = Number(value) / 100;
+    setCityTraffic(vol);
+  };
+
   return (
     <div className="wrapper">
       {!moodOpen && (
@@ -61,7 +66,7 @@ const Board = () => {
             autoPlay
             src="/assets/musics/city_traffic.mp3"
             loop
-            volume={cityTraffic / 100}
+            volume={Number(cityTraffic) / 100}
           />
           <ReactAudioPlayer
             preload="auto"
@@ -125,6 +130,25 @@ const Board = () => {
                   />
                   <i className="fas fa-volume-up fa-lg"></i>
                 </Stack>
+              </div>
+              <h5>Background Sound</h5>
+              <div className="backgroundSound">
+                <div className="sound-option">
+                  <p>City traffic</p>
+                  <ReactAudioPlayer
+                    preload="auto"
+                    autoPlay
+                    src="./assets/musics/city_traffic.mp3"
+                    loop
+                    volume={cityTraffic}
+                  />
+                  <Slider
+                    name="CityTraffic"
+                    className="slider"
+                    value={cityTraffic ? cityTraffic * 100 : 0}
+                    onChange={volumeHandler}
+                  />
+                </div>
               </div>
             </div>
           )}
