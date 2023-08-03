@@ -6,6 +6,20 @@ import { changeMoodStatus } from "../../store/moodSlice";
 import Stack from "@mui/material/Stack";
 import Slider from "@mui/material/Slider";
 import { changeVolume } from "../../store/changeVolumeSlice";
+interface SoundSettings {
+  cityTraffic: number;
+  cityRain: number;
+  fireplace: number;
+  snow: number;
+  summerStorm: number;
+  fan: number;
+  forestNight: number;
+  wave: number;
+  wind: number;
+  people: number;
+  river: number;
+  rainForest: number;
+}
 
 const Board = () => {
   const dispatch = useAppDispatch();
@@ -18,20 +32,28 @@ const Board = () => {
   const { rainValue } = rainData;
   const { moodMode } = moodData;
   const { volumeValue } = volumeData;
-  console.log("volumeValue", volumeValue);
-  const [cityTraffic, setCityTraffic] = useState<number | undefined>(0);
-  console.log("cityTraffic", cityTraffic);
-  const [cityRain, setCityRain] = useState(rainValue);
-  const [fireplace, setFireplace] = useState(0);
-  const [snow, setSnow] = useState(0);
-  const [summerStorm, setSummerStorm] = useState(0);
-  const [fan, setFan] = useState(0);
-  const [forestNight, setForestNight] = useState(0);
-  const [wave, setWave] = useState(0);
-  const [wind, setWind] = useState(0);
-  const [people, setPeople] = useState(0);
-  const [river, setRiver] = useState(0);
-  const [rainForest, setRainForest] = useState(0);
+
+  const initialSoundSettings: SoundSettings = {
+    cityTraffic: 0,
+    cityRain: rainValue,
+    fireplace: 0,
+    snow: 0,
+    summerStorm: 0,
+    fan: 0,
+    forestNight: 0,
+    wave: 0,
+    wind: 0,
+    people: 0,
+    river: 0,
+    rainForest: 0,
+  };
+
+  const [soundSettings, setSoundSettings] =
+    useState<SoundSettings>(initialSoundSettings);
+
+  const updateSoundSettings = (updates: Partial<SoundSettings>) => {
+    setSoundSettings((prevSettings) => ({ ...prevSettings, ...updates }));
+  };
 
   const openMoodHandler = () => {
     setMoodOpen(!moodOpen);
@@ -51,11 +73,6 @@ const Board = () => {
   const volumeChangeHandler = (_e: Event, value: number | number[]) => {
     dispatch(changeVolume(value as number));
   };
-  const volumeHandler = (_e: Event, value: number | number[]): void => {
-    console.log(_e);
-    const vol = Number(value) / 100;
-    setCityTraffic(vol);
-  };
 
   return (
     <div className="wrapper">
@@ -66,7 +83,7 @@ const Board = () => {
             autoPlay
             src="/assets/musics/city_traffic.mp3"
             loop
-            volume={Number(cityTraffic) / 100}
+            volume={Number(soundSettings.cityTraffic) / 100}
           />
           <ReactAudioPlayer
             preload="auto"
@@ -140,13 +157,16 @@ const Board = () => {
                     autoPlay
                     src="./assets/musics/city_traffic.mp3"
                     loop
-                    volume={cityTraffic}
+                    volume={soundSettings.cityTraffic}
                   />
                   <Slider
-                    name="CityTraffic"
                     className="slider"
-                    value={cityTraffic ? cityTraffic * 100 : 0}
-                    onChange={volumeHandler}
+                    value={soundSettings.cityTraffic * 100}
+                    onChange={(_e, value) =>
+                      updateSoundSettings({
+                        cityTraffic: (value as number) / 100,
+                      })
+                    }
                   />
                 </div>
               </div>
