@@ -1,11 +1,11 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { useState } from "react";
 import "./styles.scss";
 import ReactAudioPlayer from "react-audio-player";
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { changeMoodStatus } from "../../store/moodSlice";
 import Stack from "@mui/material/Stack";
 import { Slider } from "@mui/material";
-import { changeVolume, volumeType } from "../../store/changeVolumeSlice";
+import { changeVolume } from "../../store/changeVolumeSlice";
 
 const Board = () => {
   const dispatch = useAppDispatch();
@@ -46,8 +46,11 @@ const Board = () => {
     const clickedElementId = (e.target as HTMLDivElement).id;
     dispatch(changeMoodStatus(clickedElementId));
   };
-  const volumeChangeHandler = (e) => {
-    dispatch(changeVolume(e.target.value));
+  // const volumeChangeHandler = (e: { target: { value: number; }; }) => {
+  //   dispatch(changeVolume(e.target.value));
+  // };
+  const volumeChangeHandler = (_e: Event, value: number | number[]) => {
+    dispatch(changeVolume(value as number));
   };
   return (
     <div className="wrapper">
