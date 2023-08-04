@@ -1,4 +1,3 @@
-import "./styles.scss";
 import Digit from "../Digit";
 
 const TimerStyled = ({ seconds, minutes, hours }) => {
