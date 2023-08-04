@@ -6,6 +6,9 @@ import { changeMoodStatus } from "../../store/moodSlice";
 import Stack from "@mui/material/Stack";
 import Slider from "@mui/material/Slider";
 import { changeVolume } from "../../store/changeVolumeSlice";
+import CountDownTimer from "../CountDownTimer/CountDownTimer";
+import { timeType } from "../Home/Home";
+import TodoList from "../TodoList/TodoList";
 interface SoundSettings {
   cityTraffic: number;
   cityRain: number;
@@ -20,8 +23,31 @@ interface SoundSettings {
   river: number;
   rainForest: number;
 }
+export interface BoardProps {
+  seconds: number;
+  minutes: number;
+  hours: number;
+  isRunning: boolean;
+  pause: () => void;
+  restart: (newExpiryTimestamp: Date, autoStart?: boolean | undefined) => void;
+  resume: () => void;
+  timerStart: boolean;
+  setTimerStart: React.Dispatch<React.SetStateAction<boolean>>;
+  setTimerHandler: ({ hour, minute, second }: timeType) => void;
+}
 
-const Board = () => {
+const Board = ({
+  seconds,
+  minutes,
+  hours,
+  isRunning,
+  pause,
+  restart,
+  resume,
+  timerStart,
+  setTimerStart,
+  setTimerHandler,
+}: BoardProps) => {
   const dispatch = useAppDispatch();
   const [moodOpen, setMoodOpen] = useState(false);
   const [focusOpen, setFocusOpen] = useState(false);
@@ -363,6 +389,33 @@ const Board = () => {
             </div>
           )}
         </div>
+        <div className="modifier__icon">
+          <div className={`icon ${focusOpen ? "active" : ""}`}>
+            <i
+              className="fas fa-book-reader fa-2x"
+              onClick={openFocusHandler}
+            ></i>
+          </div>
+        </div>
+        {focusOpen && (
+          <div className="modifierBox">
+            <h4>Focus Mode</h4>
+            <CountDownTimer
+              seconds={seconds}
+              minutes={minutes}
+              hours={hours}
+              isRunning={isRunning}
+              pause={pause}
+              restart={restart}
+              resume={resume}
+              timerStart={timerStart}
+              setTimerStart={setTimerStart}
+              setTimerHandler={setTimerHandler}
+            />
+            <h4>Todo List</h4>
+            <TodoList />
+          </div>
+        )}
       </div>
     </div>
   );
