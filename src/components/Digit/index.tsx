@@ -1,4 +1,9 @@
-const Digit = ({ value: number, title: string }) => {
+interface PropType {
+  value: number;
+  title: string;
+}
+
+const Digit = ({ value, title }: PropType) => {
   const leftDigit = value >= 10 ? value.toString()[0] : "0";
   const rightDigit = value >= 10 ? value.toString()[1] : value.toString();
   return (

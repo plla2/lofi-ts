@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./styles.scss";
 import TimerStyled from "../TimerStyled";
+import { BoardProps } from "../Board/Board";
 
 const CountDownTimer = ({
   seconds,
@@ -12,13 +13,13 @@ const CountDownTimer = ({
   setTimerHandler,
   setTimerStart,
   timerStart,
-}) => {
+}: BoardProps) => {
   const [hour, setHour] = useState(0);
   const [minute, setMinute] = useState(0);
   const [second, setSecond] = useState(0);
 
   const setTimerBtnHandler = () => {
-    setTimerHandler(hour, minute, second);
+    setTimerHandler({ hour, minute, second });
     setTimerStart(true);
   };
 
@@ -32,7 +33,7 @@ const CountDownTimer = ({
           <div className="controller">
             <button
               className="buttonTimer"
-              onClick={() => setTimerHandler(0, 0, 0)}
+              onClick={() => setTimerHandler({ hour: 0, minute: 0, second: 0 })}
             >
               Cancel
             </button>
@@ -54,7 +55,7 @@ const CountDownTimer = ({
               className="number-input"
               type="number"
               value={hour}
-              onChange={(e) => setHour(e.target.value)}
+              onChange={(e) => setHour(parseInt(e.target.value, 10))}
               max={24}
               min={0}
             />
@@ -63,9 +64,7 @@ const CountDownTimer = ({
               className="number-input"
               type="number"
               value={minute}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setMinute(e.target.value)
-              }
+              onChange={(e) => setMinute(parseInt(e.target.value, 10))}
               max={60}
               min={0}
             />
@@ -74,7 +73,7 @@ const CountDownTimer = ({
               className="number-input"
               type="number"
               value={second}
-              onChange={(e) => setSecond(e.target.value)}
+              onChange={(e) => setSecond(parseInt(e.target.value, 10))}
               max={60}
               min={0}
             />
