@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { Button, Col, Form, ListGroup, Row } from "react-bootstrap";
 import Message from "../Message/Message";
-import { addList, removeList, toggleList } from "../../store/TodoListSlice";
+import { addList, removeList, toggleList } from "../../store/todoListSlice";
 
 const TodoList = () => {
   const dispatch = useAppDispatch();

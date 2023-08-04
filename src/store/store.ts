@@ -3,7 +3,7 @@ import modeSlice from "./modeSlice";
 import moodSlice from "./moodSlice";
 import changeVolume from "./changeVolumeSlice";
 import rainSlice from "./rainSlice";
-import TodoListSlice from "./TodoListSlice";
+import TodoListSlice from "./todoListSlice";
 
 const store = configureStore({
   reducer: {
