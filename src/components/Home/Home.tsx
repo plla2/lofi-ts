@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useTimer } from "react-timer-hook";
 import Board from "../Board/Board";
 
-interface timeType {
+export interface timeType {
   hour: number;
   minute: number;
   second: number;
@@ -28,7 +28,7 @@ const Home = () => {
   const { seconds, minutes, hours, isRunning, pause, restart, resume } =
     useTimer({
       expiryTimestamp,
-      onExpire: () => setTimerStart(false),
+      onExpire: (): void => setTimerStart(false),
     });
 
   const setTimeHandler = ({ hour, minute, second }: timeType) => {
@@ -84,7 +84,7 @@ const Home = () => {
         resume={resume}
         timerStart={timerStart}
         setTimerStart={setTimerStart}
-        setTimeHandler={setTimeHandler}
+        setTimerHandler={setTimeHandler}
       />
     </>
   );
