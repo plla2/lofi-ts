@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./styles.scss";
 import ReactAudioPlayer from "react-audio-player";
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { changeMoodStatus } from "../../store/moodSlice";
