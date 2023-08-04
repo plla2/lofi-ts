@@ -10,7 +10,7 @@ const CountDownTimer = ({
   isRunning,
   pause,
   resume,
-  setTimerHandler,
+  setTimeHandler,
   setTimerStart,
   timerStart,
 }: BoardProps) => {
@@ -19,7 +19,7 @@ const CountDownTimer = ({
   const [second, setSecond] = useState(0);
 
   const setTimerBtnHandler = () => {
-    setTimerHandler({ hour, minute, second });
+    setTimeHandler({ hour, minute, second });
     setTimerStart(true);
   };
 
@@ -33,7 +33,7 @@ const CountDownTimer = ({
           <div className="controller">
             <button
               className="buttonTimer"
-              onClick={() => setTimerHandler({ hour: 0, minute: 0, second: 0 })}
+              onClick={() => setTimeHandler({ hour: 0, minute: 0, second: 0 })}
             >
               Cancel
             </button>

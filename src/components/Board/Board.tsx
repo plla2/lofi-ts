@@ -33,7 +33,7 @@ export interface BoardProps {
   resume: () => void;
   timerStart: boolean;
   setTimerStart: React.Dispatch<React.SetStateAction<boolean>>;
-  setTimerHandler: ({ hour, minute, second }: timeType) => void;
+  setTimeHandler: ({ hour, minute, second }: timeType) => void;
 }
 
 const Board = ({
@@ -46,7 +46,7 @@ const Board = ({
   resume,
   timerStart,
   setTimerStart,
-  setTimerHandler,
+  setTimeHandler,
 }: BoardProps) => {
   const dispatch = useAppDispatch();
   const [moodOpen, setMoodOpen] = useState(false);
@@ -99,7 +99,6 @@ const Board = ({
   const volumeChangeHandler = (_e: Event, value: number | number[]) => {
     dispatch(changeVolume(value as number));
   };
-
   return (
     <div className="wrapper">
       {!moodOpen && (
@@ -410,7 +409,7 @@ const Board = ({
               resume={resume}
               timerStart={timerStart}
               setTimerStart={setTimerStart}
-              setTimerHandler={setTimerHandler}
+              setTimeHandler={setTimeHandler}
             />
             <h4>Todo List</h4>
             <TodoList />

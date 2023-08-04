@@ -36,6 +36,7 @@ const Home = () => {
     const setupTime =
       Number(hour) * 3600 + Number(minute) * 60 + Number(second);
     time.setSeconds(time.getSeconds() + setupTime);
+    restart(time);
   };
   return (
     <>
@@ -84,7 +85,7 @@ const Home = () => {
         resume={resume}
         timerStart={timerStart}
         setTimerStart={setTimerStart}
-        setTimerHandler={setTimeHandler}
+        setTimeHandler={setTimeHandler}
       />
     </>
   );
