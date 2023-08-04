@@ -1,19 +1,15 @@
-import { FormControlLabel, Switch, Theme, styled } from "@mui/material";
+import { Theme, styled } from "@mui/material/styles";
+import Switch from "@mui/material/Switch";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
-interface Prop {
-  theme?: Theme | undefined;
+interface ThemeProp {
+  theme: string | Theme | (string & Theme);
+}
+interface stringProp {
+  theme: string;
 }
 
-const DarkMode = ({ theme }: Prop) => {
-  return (
-    <FormControlLabel
-      control={<MaterialUISwitch sx={{ m: 1 }} theme={theme} />}
-      label={""}
-    />
-  );
-};
-
-const MaterialUISwitch = styled(Switch)(({ theme }: string) => ({
+const MaterialUISwitch = styled(Switch)(({ theme }: stringProp) => ({
   width: 60,
   height: 34,
   padding: 7,
@@ -58,5 +54,16 @@ const MaterialUISwitch = styled(Switch)(({ theme }: string) => ({
     borderRadius: 20 / 2,
   },
 }));
+
+const DarkMode: React.FC<ThemeProp> = ({ theme }) => {
+  return (
+    <FormControlLabel
+      control={
+        <MaterialUISwitch sx={{ m: 1 }} theme={theme as string & Theme} />
+      }
+      label={""}
+    />
+  );
+};
 
 export default DarkMode;

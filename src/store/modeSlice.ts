@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-interface modeType {
+export interface modeType {
   mode: string;
 }
 const initialState = {
@@ -13,7 +13,7 @@ const modeSlice = createSlice({
     setMode: (state, action: PayloadAction<"day" | "night">) => {
       state.mode = action.payload;
     },
-    changeDayNight: (state: modeType) => {
+    changeDayNight: (state) => {
       state.mode = state.mode === "day" ? "night" : "day";
     },
   },
