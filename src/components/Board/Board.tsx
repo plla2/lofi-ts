@@ -8,6 +8,8 @@ import { changeVolume } from "../../store/changeVolumeSlice";
 import CountDownTimer from "../CountDownTimer/CountDownTimer";
 import { timeType } from "../Home/Home";
 import TodoList from "../TodoList/TodoList";
+import "./styles.scss";
+
 interface SoundSettings {
   cityTraffic: number;
   cityRain: number;
