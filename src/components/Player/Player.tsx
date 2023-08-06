@@ -1,7 +1,7 @@
 import prevBtn from "../../assets/icons/prev.svg";
 import playBtn from "../../assets/icons/play.svg";
-import pauseBtn from "../../assets/icons/next.svg";
-import nextBtn from "../../assets/icons/pause.svg";
+import nextBtn from "../../assets/icons/next.svg";
+import pauseBtn from "../../assets/icons/pause.svg";
 import { useEffect, useRef, useState } from "react";
 import { useAppSelector } from "../../store/hook";
 import { RootState } from "../../store/store";
