@@ -3,4 +3,28 @@
   width: 100%;
   position: absolute;
   z-index: 2;
+  display: flex;
+  height: 14%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 26px;
+  overflow: hidden;
+  color: white;
+}
+.song-name {
+  font-size: 19px;
+}
+
+.author {
+  font-size: 13px;
+  .author-name {
+    margin-left: 5px;
+    text-decoration: none;
+    color: cadetblue;
+
+    &:hover {
+      text-decoration: underline;
+      opacity: 0.8;
+    }
+  }
 }
