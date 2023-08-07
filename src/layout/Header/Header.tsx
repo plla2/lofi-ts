@@ -5,8 +5,10 @@ import DarkMode from "../../components/DarkMode";
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { changeDayNight } from "../../store/modeSlice";
 import logo from "../../assets/icons/lofi-logo.gif";
+import { useState } from "react";
 
 const Header = () => {
+  const [fullScreen, setFullScreen] = useState(false);
   const daynight = useAppSelector((state) => state.mode);
   const dispatch = useAppDispatch();
   const { mode } = daynight;
@@ -14,6 +16,19 @@ const Header = () => {
 
   const daynightHandler = () => {
     dispatch(changeDayNight());
+  };
+
+  const fullScreenHandler = () => {
+    if (!fullScreen) {
+      setFullScreen(true);
+      const e = document.documentElement;
+      void e.requestFullscreen();
+    } else {
+      setFullScreen(false);
+      if (!document.exitFullscreen) {
+        void document.exitFullscreen();
+      }
+    }
   };
 
   return (
@@ -30,7 +45,7 @@ const Header = () => {
         <div onClick={daynightHandler}>
           <DarkMode theme={mode} />
         </div>
-        <button className="fullscreen-btn">
+        <button className="fullscreen-btn" onClick={fullScreenHandler}>
           <i className="fas fa-expand fa-lg"></i>
         </button>
       </div>
