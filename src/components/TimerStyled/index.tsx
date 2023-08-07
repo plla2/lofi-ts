@@ -1,4 +1,6 @@
 import Digit from "../Digit";
+import "./styles.scss";
+
 interface PropType {
   seconds: number;
   minutes: number;
