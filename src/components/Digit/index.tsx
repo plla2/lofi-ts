@@ -1,3 +1,5 @@
+import "./Digit.scss";
+
 interface PropType {
   value: number;
   title: string;
