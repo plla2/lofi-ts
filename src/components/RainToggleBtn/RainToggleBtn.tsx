@@ -22,7 +22,7 @@ const RainToggleBtn = () => {
   };
   console.log(buttonClick);
   return (
-    <div className="wrapper">
+    <div className="wrapper1">
       {buttonClick && (
         <ReactAudioPlayer
           preload="auto"
