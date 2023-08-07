@@ -1,0 +1,12 @@
+.todoList {
+  height: 200px;
+}
+
+.listgroup {
+  height: 150px;
+  overflow-y: scroll;
+}
+
+.listgroup::-webkit-scrollbar {
+  display: none;
+}

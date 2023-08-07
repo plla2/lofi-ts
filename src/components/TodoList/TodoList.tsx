@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { Button, Col, Form, ListGroup, Row } from "react-bootstrap";
 import Message from "../Message/Message";
 import { addList, removeList, toggleList } from "../../store/todoListSlice";
+import "./TodoList.scss";
 
 const TodoList = () => {
   const dispatch = useAppDispatch();
