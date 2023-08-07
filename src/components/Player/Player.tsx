@@ -59,7 +59,12 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs }: Props) => {
   };
   return (
     <div className="music-player">
-      <audio loop src={songs[currentSongIndex].src} ref={audioElement}></audio>
+      <audio
+        loop
+        autoPlay
+        src={songs[currentSongIndex].src}
+        ref={audioElement}
+      ></audio>
       <div className="music-player--controls">
         <button className="skip-btn" onClick={() => SkipSong(false)}>
           <img src={prevBtn} alt="이전 버튼" />
