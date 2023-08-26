@@ -13,9 +13,12 @@
 
 </br>
 
-## 🔗 배포 링크
+## 🔗 배포 / 트러블슈팅 블로깅 링크
 </br>
-https://lofi-ts.netlify.app/
+배포링크 : https://lofi-ts.netlify.app/
+</br>
+</br>
+포스팅 링크 : https://jhbljs92.tistory.com/entry/lofi-%EC%9B%B9%EC%95%B1-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EA%B8%B0-%ED%9A%8C%EA%B3%A0
 </br>
 </br>
 
