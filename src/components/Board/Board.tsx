@@ -6,36 +6,10 @@ import Stack from "@mui/material/Stack";
 import Slider from "@mui/material/Slider";
 import { changeVolume } from "../../store/changeVolumeSlice";
 import CountDownTimer from "../CountDownTimer/CountDownTimer";
-import { timeType } from "../Home/Home";
 import TodoList from "../TodoList/TodoList";
 import "./styles.scss";
-
-interface SoundSettings {
-  cityTraffic: number;
-  cityRain: number;
-  fireplace: number;
-  snow: number;
-  summerStorm: number;
-  fan: number;
-  forestNight: number;
-  wave: number;
-  wind: number;
-  people: number;
-  river: number;
-  rainForest: number;
-}
-export interface BoardProps {
-  seconds: number;
-  minutes: number;
-  hours: number;
-  isRunning: boolean;
-  pause: () => void;
-  restart: (newExpiryTimestamp: Date, autoStart?: boolean | undefined) => void;
-  resume: () => void;
-  timerStart: boolean;
-  setTimerStart: React.Dispatch<React.SetStateAction<boolean>>;
-  setTimeHandler: ({ hour, minute, second }: timeType) => void;
-}
+import BackgroundSound from "../BackgroundSound/BackgroundSound";
+import { BoardProps, SoundSettings } from "./BoardTypes";
 
 const Board = ({
   seconds,
@@ -178,210 +152,99 @@ const Board = ({
               <div className="backgroundSound">
                 <div className="sound-option">
                   <p>City traffic</p>
-                  <ReactAudioPlayer
-                    preload="auto"
-                    autoPlay
+                  <BackgroundSound
                     src="./assets/musics/city_traffic.mp3"
-                    loop
                     volume={soundSettings.cityTraffic}
-                  />
-                  <Slider
-                    className="slider"
-                    value={soundSettings.cityTraffic * 100}
-                    onChange={(_e, value) =>
-                      updateSoundSettings({
-                        cityTraffic: (value as number) / 100,
-                      })
+                    onChange={(value) =>
+                      updateSoundSettings({ cityTraffic: value })
                     }
                   />
                 </div>
                 <div className="sound-option">
                   <p>City rain</p>
-                  <ReactAudioPlayer
-                    preload="auto"
-                    autoPlay
+                  <BackgroundSound
                     src="./assets/musics/rain_city.mp3"
-                    loop
                     volume={soundSettings.cityRain}
-                  />
-                  <Slider
-                    className="slider"
-                    value={soundSettings.cityRain * 100}
-                    onChange={(_e, value) =>
-                      updateSoundSettings({
-                        cityRain: (value as number) / 100,
-                      })
+                    onChange={(value) =>
+                      updateSoundSettings({ cityRain: value })
                     }
                   />
                 </div>
                 <div className="sound-option">
                   <p>Snow</p>
-                  <ReactAudioPlayer
-                    preload="auto"
-                    autoPlay
+                  <BackgroundSound
                     src="./assets/musics/snow.mp3"
-                    loop
                     volume={soundSettings.snow}
-                  />
-                  <Slider
-                    className="slider"
-                    value={soundSettings.snow * 100}
-                    onChange={(_e, value) =>
-                      updateSoundSettings({
-                        snow: (value as number) / 100,
-                      })
-                    }
+                    onChange={(value) => updateSoundSettings({ snow: value })}
                   />
                 </div>
                 <div className="sound-option">
                   <p>Summer Storm</p>
-                  <ReactAudioPlayer
-                    preload="auto"
-                    autoPlay
+                  <BackgroundSound
                     src="./assets/musics/summer_storm.mp3"
-                    loop
                     volume={soundSettings.summerStorm}
-                  />
-                  <Slider
-                    className="slider"
-                    value={soundSettings.summerStorm * 100}
-                    onChange={(_e, value) =>
-                      updateSoundSettings({
-                        summerStorm: (value as number) / 100,
-                      })
+                    onChange={(value) =>
+                      updateSoundSettings({ summerStorm: value })
                     }
                   />
                 </div>
                 <div className="sound-option">
                   <p>Fan</p>
-                  <ReactAudioPlayer
-                    preload="auto"
-                    autoPlay
+                  <BackgroundSound
                     src="./assets/musics/fan.mp3"
-                    loop
                     volume={soundSettings.fan}
-                  />
-                  <Slider
-                    className="slider"
-                    value={soundSettings.fan * 100}
-                    onChange={(_e, value) =>
-                      updateSoundSettings({
-                        fan: (value as number) / 100,
-                      })
-                    }
+                    onChange={(value) => updateSoundSettings({ fan: value })}
                   />
                 </div>
                 <div className="sound-option">
                   <p>Forest Night</p>
-                  <ReactAudioPlayer
-                    preload="auto"
-                    autoPlay
+                  <BackgroundSound
                     src="./assets/musics/forest_night.mp3"
-                    loop
                     volume={soundSettings.forestNight}
-                  />
-                  <Slider
-                    className="slider"
-                    value={soundSettings.forestNight * 100}
-                    onChange={(_e, value) =>
-                      updateSoundSettings({
-                        forestNight: (value as number) / 100,
-                      })
+                    onChange={(value) =>
+                      updateSoundSettings({ forestNight: value })
                     }
                   />
                 </div>
                 <div className="sound-option">
                   <p>Wave</p>
-                  <ReactAudioPlayer
-                    preload="auto"
-                    autoPlay
+                  <BackgroundSound
                     src="./assets/musics/waves.mp3"
-                    loop
                     volume={soundSettings.wave}
-                  />
-                  <Slider
-                    className="slider"
-                    value={soundSettings.wave * 100}
-                    onChange={(_e, value) =>
-                      updateSoundSettings({
-                        wave: (value as number) / 100,
-                      })
-                    }
+                    onChange={(value) => updateSoundSettings({ wave: value })}
                   />
                 </div>
                 <div className="sound-option">
                   <p>Wind</p>
-                  <ReactAudioPlayer
-                    preload="auto"
-                    autoPlay
+                  <BackgroundSound
                     src="./assets/musics/wind.mp3"
-                    loop
                     volume={soundSettings.wind}
-                  />
-                  <Slider
-                    className="slider"
-                    value={soundSettings.wind * 100}
-                    onChange={(_e, value) =>
-                      updateSoundSettings({
-                        wind: (value as number) / 100,
-                      })
-                    }
+                    onChange={(value) => updateSoundSettings({ wind: value })}
                   />
                 </div>
                 <div className="sound-option">
                   <p>River</p>
-                  <ReactAudioPlayer
-                    preload="auto"
-                    autoPlay
+                  <BackgroundSound
                     src="./assets/musics/river.mp3"
-                    loop
                     volume={soundSettings.river}
-                  />
-                  <Slider
-                    className="slider"
-                    value={soundSettings.river * 100}
-                    onChange={(_e, value) =>
-                      updateSoundSettings({
-                        river: (value as number) / 100,
-                      })
-                    }
+                    onChange={(value) => updateSoundSettings({ river: value })}
                   />
                 </div>
                 <div className="sound-option">
                   <p>People</p>
-                  <ReactAudioPlayer
-                    preload="auto"
-                    autoPlay
+                  <BackgroundSound
                     src="./assets/musics/people_talk_inside.mp3"
-                    loop
                     volume={soundSettings.people}
-                  />
-                  <Slider
-                    className="slider"
-                    value={soundSettings.people * 100}
-                    onChange={(_e, value) =>
-                      updateSoundSettings({
-                        people: (value as number) / 100,
-                      })
-                    }
+                    onChange={(value) => updateSoundSettings({ people: value })}
                   />
                 </div>
                 <div className="sound-option">
                   <p>Rain Forest</p>
-                  <ReactAudioPlayer
-                    preload="auto"
-                    autoPlay
+                  <BackgroundSound
                     src="./assets/musics/rain_forest.mp3"
-                    loop
                     volume={soundSettings.rainForest}
-                  />
-                  <Slider
-                    className="slider"
-                    value={soundSettings.rainForest * 100}
-                    onChange={(_e, value) =>
-                      updateSoundSettings({
-                        rainForest: (value as number) / 100,
-                      })
+                    onChange={(value) =>
+                      updateSoundSettings({ rainForest: value })
                     }
                   />
                 </div>

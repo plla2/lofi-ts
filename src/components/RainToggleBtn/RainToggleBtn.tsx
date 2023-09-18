@@ -20,7 +20,7 @@ const RainToggleBtn = () => {
     }
     setButtonClick(!buttonClick);
   };
-  console.log(buttonClick);
+
   return (
     <div className="wrapper1">
       {buttonClick && (

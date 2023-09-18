@@ -13,8 +13,9 @@
 
   a {
     img {
-      max-width: 150px;
-      max-height: 150px;
+      width: 150px;
+      height: 100%;
+      object-fit: cover;
     }
     @media (max-width: 768px) {
       padding: 0 5px;

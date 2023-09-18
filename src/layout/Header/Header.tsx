@@ -12,7 +12,6 @@ const Header = () => {
   const daynight = useAppSelector((state) => state.mode);
   const dispatch = useAppDispatch();
   const { mode } = daynight;
-  console.log(mode);
 
   const daynightHandler = () => {
     dispatch(changeDayNight());

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./styles.scss";
 import TimerStyled from "../TimerStyled";
-import { BoardProps } from "../Board/Board";
+import { BoardProps } from "../Board/BoardTypes";
 
 const CountDownTimer = ({
   seconds,
