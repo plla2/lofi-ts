@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactAudioPlayer from "react-audio-player";
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { changeMoodStatus } from "../../store/moodSlice";
 import Stack from "@mui/material/Stack";
@@ -78,19 +77,10 @@ const Board = ({
     <div className="wrapper">
       {!moodOpen && (
         <div>
-          <ReactAudioPlayer
-            preload="auto"
-            autoPlay
-            src="/assets/musics/city_traffic.mp3"
-            loop
-            volume={Number(soundSettings.cityTraffic) / 100}
-          />
-          <ReactAudioPlayer
-            preload="auto"
-            autoPlay
-            src="/assets/musics/rain_city.mp3"
-            loop
-            volume={rainValue / 100}
+          <BackgroundSound
+            src="./assets/musics/city_traffic.mp3"
+            volume={soundSettings.cityTraffic}
+            onChange={(value) => updateSoundSettings({ cityTraffic: value })}
           />
         </div>
       )}
