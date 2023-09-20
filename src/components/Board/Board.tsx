@@ -75,15 +75,6 @@ const Board = ({
   };
   return (
     <div className="wrapper">
-      {!moodOpen && (
-        <div>
-          <BackgroundSound
-            src="./assets/musics/city_traffic.mp3"
-            volume={soundSettings.cityTraffic}
-            onChange={(value) => updateSoundSettings({ cityTraffic: value })}
-          />
-        </div>
-      )}
       <div
         className={`board ${moodOpen ? "mood" : ""} ${
           focusOpen ? "focus" : ""
