@@ -3,6 +3,12 @@ import "./styles.scss";
 import TimerStyled from "../TimerStyled";
 import { BoardProps } from "../Board/BoardTypes";
 
+interface TimeStateType {
+  hour: number;
+  minute: number;
+  second: number;
+}
+
 const CountDownTimer = ({
   seconds,
   minutes,
@@ -14,13 +20,55 @@ const CountDownTimer = ({
   setTimerStart,
   timerStart,
 }: BoardProps) => {
-  const [hour, setHour] = useState(0);
-  const [minute, setMinute] = useState(0);
-  const [second, setSecond] = useState(0);
+  const [time, setTime] = useState<TimeStateType>({
+    hour: 0,
+    minute: 0,
+    second: 0,
+  });
+
+  const setInputValue = (key: keyof TimeStateType, value: number) => {
+    setTime({ ...time, [key]: value });
+  };
 
   const setTimerBtnHandler = () => {
-    setTimeHandler({ hour, minute, second });
+    setTimeHandler(time);
     setTimerStart(true);
+  };
+
+  const renderInput = (
+    label: string,
+    key: keyof TimeStateType,
+    max: number
+  ) => {
+    return (
+      <>
+        <input
+          className="number-input"
+          type="number"
+          value={time[key]}
+          onChange={(e) => setInputValue(key, parseInt(e.target.value, 10))}
+          max={max}
+          min={0}
+        />
+        <span>{label}</span>
+      </>
+    );
+  };
+
+  const renderTimerControls = () => {
+    if (isRunning) {
+      return (
+        <button className="buttonTimer" onClick={pause}>
+          Pause
+        </button>
+      );
+    } else {
+      return (
+        <button className="buttonTimer" onClick={resume}>
+          Resume
+        </button>
+      );
+    }
   };
 
   return (
@@ -37,49 +85,16 @@ const CountDownTimer = ({
             >
               Cancel
             </button>
-            {isRunning ? (
-              <button className="buttonTimer" onClick={pause}>
-                Pause
-              </button>
-            ) : (
-              <button className="buttonTimer" onClick={resume}>
-                Resume
-              </button>
-            )}
+            {renderTimerControls()}
           </div>
         </div>
       ) : (
         <div className="countdownNotRun">
           <div className="input">
-            <input
-              className="number-input"
-              type="number"
-              value={hour}
-              onChange={(e) => setHour(parseInt(e.target.value, 10))}
-              max={24}
-              min={0}
-            />
-            <span>hour</span>
-            <input
-              className="number-input"
-              type="number"
-              value={minute}
-              onChange={(e) => setMinute(parseInt(e.target.value, 10))}
-              max={60}
-              min={0}
-            />
-            <span>min</span>
-            <input
-              className="number-input"
-              type="number"
-              value={second}
-              onChange={(e) => setSecond(parseInt(e.target.value, 10))}
-              max={60}
-              min={0}
-            />
-            <span>sec</span>
+            {renderInput("hour", "hour", 24)}
+            {renderInput("min", "minute", 60)}
+            {renderInput("sec", "second", 60)}
           </div>
-
           <button className="buttonTimer setup" onClick={setTimerBtnHandler}>
             Set Timer
           </button>
