@@ -5,7 +5,7 @@ import Message from "../Message/Message";
 import { addList, removeList, toggleList } from "../../store/todoListSlice";
 import "./TodoList.scss";
 
-const TodoList = () => {
+const TodoList = React.memo(function TodoList() {
   const dispatch = useAppDispatch();
   const [list, setList] = useState("");
   const data = useAppSelector((state) => state.todo);
@@ -92,6 +92,6 @@ const TodoList = () => {
       )}
     </div>
   );
-};
+});
 
 export default TodoList;
